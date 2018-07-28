@@ -1,19 +1,37 @@
 <!-- Qrcode Id Field -->
 <div class="form-group">
     {!! Form::label('qrcode_id', 'Product Name:') !!}
-    <p>{!! $transaction->qrcode['product_name'] !!}</p>
+    <p>
+        <a href="/qrcodes/{!! $transaction->qrcode['id'] !!}">
+            <b>{!! $transaction->qrcode['product_name'] !!}</b>
+        </a>
+    </p>
+</div>
+
+<!-- Amount Field -->
+<div class="form-group">
+    {!! Form::label('amount', 'Amount:') !!}
+    <p>${!! $transaction->amount !!}</p>
 </div>
 
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', 'Buyer Name:') !!}
-    <p>{!! $transaction->user_id !!}</p>
+    <p>
+        <a href="/users/{!! $transaction->user['id'] !!}">
+            <b> {!! $transaction->user['name'] !!} | {!! $transaction->user['email'] !!} </b>
+        </a>
+    </p>
 </div>
 
 <!-- Qrcode Owner Id Field -->
 <div class="form-group">
     {!! Form::label('qrcode_owner_id', 'Qrcode Owner Name:') !!}
-    <p>{!! $transaction->qrcode_owner_id !!}</p>
+    <p>
+        <a href="/users/{!! $transaction->qrcode_owner['id'] !!}"> 
+            <b>{!! $transaction->qrcode_owner['name'] !!}</b>
+        </a>
+    </p>
 </div>
 
 <!-- Payment Method Field -->
@@ -28,12 +46,6 @@
     <p>{!! $transaction->message !!}</p>
 </div>
 
-<!-- Amount Field -->
-<div class="form-group">
-    {!! Form::label('amount', 'Amount:') !!}
-    <p>{!! $transaction->amount !!}</p>
-</div>
-
 <!-- Status Field -->
 <div class="form-group">
     {!! Form::label('status', 'Status:') !!}
@@ -43,11 +55,11 @@
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $transaction->created_at !!}</p>
+    <p>{!! $transaction->created_at->format('D d, M, Y H:i') !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $transaction->updated_at !!}</p>
+    <p>{!! $transaction->updated_at->format('D d, M, Y H:i') !!}</p>
 </div>

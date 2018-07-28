@@ -73,4 +73,20 @@ class Transaction extends Model
     {
         return $this->belongsTo('App\Models\Qrcode');
     }
+
+    /**
+     * Get the user that owns the transaction.
+     */
+     public function user()
+     {
+         return $this->belongsTo('App\Models\User');
+     }
+
+     /**
+     * Get the qrcode creator
+     */
+    public function qrcode_owner()
+    {
+        return $this->belongsTo('App\Models\User', 'qrcode_owner_id');
+    }
 }
