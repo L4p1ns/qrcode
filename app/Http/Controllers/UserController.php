@@ -7,6 +7,7 @@ use Response;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
@@ -125,8 +126,12 @@ class UserController extends AppBaseController
 
             return redirect(route('users.index'));
         }
-
-        $user = $this->userRepository->update($request->all(), $id);
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }
+        
+        $user = $this->userRepository->update($input, $id);
 
         Flash::success('User updated successfully.');
 

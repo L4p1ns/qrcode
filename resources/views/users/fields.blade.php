@@ -5,9 +5,10 @@
 
 @if(Auth::user()->role_id
 < 3) <!-- Role Id Field -->
+    {{--
     <div class="form-group col-sm-6">
         {!! Form::label('role_id', 'User level:') !!} {!! Form::number('role_id', null, ['class' => 'form-control']) !!}
-    </div>
+    </div> --}}
 
     <div class="form-group col-sm-6">
         <label for="sel1">User level:</label>
@@ -32,5 +33,4 @@
     <!-- Submit Field -->
     <div class="form-group col-sm-12">
         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-        <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
     </div>
