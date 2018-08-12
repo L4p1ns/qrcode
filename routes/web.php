@@ -24,9 +24,16 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::resource('qrcodes', 'QrcodeController');
 
-    Route::resource('roles', 'RoleController');
-
+    
     Route::resource('transactions', 'TransactionController');
-
+        
     Route::resource('users', 'UserController');
+    
+    // Only moderators and admins
+    Route::group(['middleware' => 'checkmoderator'], function(){    
+        Route::get('/users', 'UserController@index')->name('users.index');
+    });
+    
+    // Only Admins can access this
+    Route::resource('roles', 'RoleController')->middleware('checkadmin');
 });
