@@ -68,6 +68,13 @@ class User extends Model
         return $this->hasMany('App\Models\Transaction');
     }
 
+     /**
+     * Get the qrcode for the user
+     */
+    public function qrcodes()
+    {
+        return $this->hasMany('App\Models\Qrcode');
+    }
     /**
      * Get the role that owns this user.
      */
