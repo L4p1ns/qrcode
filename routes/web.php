@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('transactions', 'TransactionController');
         
     Route::resource('users', 'UserController');
+    Route::resource('accounts', 'AccountController');
+    Route::resource('accountHistories', 'AccountHistoryController');
     
     // Only moderators and admins
     Route::group(['middleware' => 'checkmoderator'], function(){    
